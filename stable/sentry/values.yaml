@@ -118,6 +118,9 @@ ingress:
 # TODO: add support for plugins https://docs.sentry.io/server/plugins/
 
 postgresql:
+  create: true
+  #hostname: SetIfCreateFalse
+  #password: SetForPassword
   postgresDatabase: sentry
   postgresUser: sentry
   imageTag: "9.5"

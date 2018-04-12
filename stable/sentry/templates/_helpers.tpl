@@ -22,6 +22,15 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- define "postgresql.fullname" -}}
 {{- printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{- define "postgresql.hostname" -}}
+  {{- if .Values.postgresql }}
+    {{- .Values.postgresql.hostname | default (printf "%s-%s" .Release.Name "postgresql") | trunc 63 | trimSuffix "-"}}
+  {{- else -}}
+    {{- printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" -}}
+  {{- end -}}
+{{- end -}}
+
 {{- define "redis.fullname" -}}
 {{- printf "%s-%s" .Release.Name "redis" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
